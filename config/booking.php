@@ -1,0 +1,23 @@
+<?php
+
+return [
+
+    'jenis_acara' => [
+        'Prewedding',
+        'Ulang Tahun',
+        'Produk',
+        'Keluarga',
+        'Wisuda',
+        'Engagement',
+        'Acara Kantor / Perusahaan',
+        'Lainnya',
+    ],
+
+    // Slot jam sesi foto yang bisa dipilih pelanggan.
+    'jam_slot' => [
+        '08:00', '09:00', '10:00', '11:00', '12:00',
+        '13:00', '14:00', '15:00', '16:00', '17:00',
+        '18:00', '19:00', '20:00',
+    ],
+
+];
