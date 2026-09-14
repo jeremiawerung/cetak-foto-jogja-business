@@ -20,7 +20,20 @@
 /public/storage
 /storage/*.key
 /storage/pail
+/storage/app/google
+/storage/app/backups
 /vendor
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# Sample data lokal untuk pengembangan/testing, bukan bagian aplikasi (berisi data
+# nyata seperti foto siswa - jangan pernah ikut ter-push ke repo publik).
+/Poto.zip
+/SMPN 15 YOGYAKARTA-20260910T171234Z-1-001.zip
+/Sample
+
+# File sumber mentah, bukan aset yang dipakai/dirender web (hanya file gambar
+# individual di folder ini yang benar-benar dipakai aplikasi).
+/public/images/katalog/Kawanua UI UX.zip
+/public/images/katalog/katalog.zip

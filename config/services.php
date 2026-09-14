@@ -46,4 +46,24 @@ return [
         'number' => env('WHATSAPP_NUMBER', '62895708600900'),
     ],
 
+    'kartu_pelajar' => [
+        'pdftotext_path' => env('PDFTOTEXT_PATH', 'pdftotext'),
+        'duplicate_threshold_seconds' => env('KARTU_PELAJAR_DUPLICATE_THRESHOLD', 5),
+        'fuzzy_name_threshold' => env('KARTU_PELAJAR_FUZZY_NAME_THRESHOLD', 0.75),
+        'fuzzy_auto_match_threshold' => env('KARTU_PELAJAR_FUZZY_AUTO_MATCH_THRESHOLD', 0.95),
+        'nisn_crosscheck_name_threshold' => env('KARTU_PELAJAR_NISN_CROSSCHECK_THRESHOLD', 0.5),
+        'ai_verification' => [
+            'api_key' => env('DEEPSEEK_API_KEY'),
+            'model' => env('KARTU_PELAJAR_AI_MODEL', 'deepseek-flash'),
+            'batch_size' => env('KARTU_PELAJAR_AI_BATCH_SIZE', 25),
+        ],
+    ],
+
+    'verifikasi_siswa' => [
+        'google_service_account_path' => env('GOOGLE_SERVICE_ACCOUNT_PATH', storage_path('app/google/service-account.json')),
+        'sync_interval_minutes' => env('VERIFIKASI_SISWA_SYNC_INTERVAL', 15),
+        'fuzzy_name_threshold' => env('VERIFIKASI_SISWA_FUZZY_THRESHOLD', 0.75),
+        'nisn_crosscheck_name_threshold' => env('VERIFIKASI_SISWA_NISN_CROSSCHECK_THRESHOLD', 0.5),
+    ],
+
 ];
