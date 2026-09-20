@@ -1,7 +1,18 @@
 <?php
 
+use App\Http\Controllers\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Admin\BookingStudioController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\KategoriProdukController;
+use App\Http\Controllers\Admin\KategoriProdukItemController;
+use App\Http\Controllers\Admin\KategoriProdukTierController;
+use App\Http\Controllers\Admin\PrintOrderController;
+use App\Http\Controllers\CekPesananController;
 use App\Http\Controllers\CetakFotoController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KeranjangController;
+use App\Http\Controllers\ProdukDetailController;
 use App\Http\Controllers\Internal\AuthController as InternalAuthController;
 use App\Http\Controllers\Internal\DashboardController as InternalDashboardController;
 use App\Http\Controllers\Internal\KartuPelajarBatchController as InternalKartuPelajarBatchController;
@@ -17,13 +28,84 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('cetak-foto')->name('cetak-foto.')->group(function () {
     Route::get('/', [CetakFotoController::class, 'index'])->name('index');
-    Route::post('/order', [CetakFotoController::class, 'store'])->name('order');
 });
+
+Route::get('/produk/{kategori}/{item?}', [ProdukDetailController::class, 'show'])->name('produk.show');
+
+Route::prefix('keranjang')->name('keranjang.')->group(function () {
+    Route::get('/', [KeranjangController::class, 'index'])->name('index');
+    Route::post('/tambah', [KeranjangController::class, 'tambah'])->name('tambah');
+    Route::post('/hapus/{index}', [KeranjangController::class, 'hapus'])->whereNumber('index')->name('hapus');
+});
+
+Route::prefix('checkout')->name('checkout.')->group(function () {
+    Route::get('/informasi', [CheckoutController::class, 'informasiForm'])->name('informasi');
+    Route::post('/informasi', [CheckoutController::class, 'informasiSimpan'])->name('informasi.simpan');
+
+    Route::get('/pengiriman', [CheckoutController::class, 'pengirimanForm'])->name('pengiriman');
+    Route::post('/pengiriman', [CheckoutController::class, 'pengirimanSimpan'])->name('pengiriman.simpan');
+    Route::get('/pengiriman/cari-tujuan', [CheckoutController::class, 'cariTujuan'])->name('pengiriman.cari-tujuan');
+    Route::get('/pengiriman/opsi-ongkir', [CheckoutController::class, 'opsiOngkir'])->name('pengiriman.opsi-ongkir');
+
+    Route::get('/konfirmasi', [CheckoutController::class, 'konfirmasiForm'])->name('konfirmasi');
+    Route::post('/konfirmasi', [CheckoutController::class, 'konfirmasiSimpan'])->name('konfirmasi.simpan');
+
+    Route::get('/sukses/{printOrder:nomor_pesanan}', [CheckoutController::class, 'sukses'])->name('sukses');
+});
+
+Route::get('/cek-pesanan', [CekPesananController::class, 'index'])->name('cek-pesanan');
 
 Route::prefix('sewa-fotografer')->name('sewa-fotografer.')->group(function () {
     Route::get('/', [SewaFotograferController::class, 'index'])->name('index');
     Route::get('/ketersediaan', [SewaFotograferController::class, 'ketersediaan'])->name('ketersediaan');
     Route::post('/booking', [SewaFotograferController::class, 'store'])->name('booking');
+});
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::middleware('guest')->group(function () {
+        Route::get('/login', [AdminAuthController::class, 'showLogin'])->name('login');
+        Route::post('/login', [AdminAuthController::class, 'login'])->middleware('throttle:6,1')->name('login.attempt');
+    });
+
+    Route::middleware(['auth', 'area:katalog'])->group(function () {
+        Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+        Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
+
+        Route::prefix('kategori-produk')->name('kategori-produk.')->group(function () {
+            Route::get('/', [KategoriProdukController::class, 'index'])->name('index');
+            Route::post('/', [KategoriProdukController::class, 'store'])->name('store');
+            Route::get('/{kategoriProduk}', [KategoriProdukController::class, 'show'])->name('show');
+            Route::post('/{kategoriProduk}', [KategoriProdukController::class, 'update'])->name('update');
+            Route::post('/{kategoriProduk}/status', [KategoriProdukController::class, 'toggleActive'])->name('toggle-active');
+            Route::post('/{kategoriProduk}/hapus', [KategoriProdukController::class, 'destroy'])->name('destroy');
+
+            Route::post('/{kategoriProduk}/item', [KategoriProdukItemController::class, 'store'])->name('item.store');
+            Route::post('/{kategoriProduk}/item/{item}', [KategoriProdukItemController::class, 'update'])->name('item.update');
+            Route::post('/{kategoriProduk}/item/{item}/status', [KategoriProdukItemController::class, 'toggleActive'])->name('item.toggle-active');
+            Route::post('/{kategoriProduk}/item/{item}/hapus', [KategoriProdukItemController::class, 'destroy'])->name('item.destroy');
+
+            Route::post('/{kategoriProduk}/tier', [KategoriProdukTierController::class, 'store'])->name('tier.store');
+            Route::post('/{kategoriProduk}/tier/{tier}', [KategoriProdukTierController::class, 'update'])->name('tier.update');
+            Route::post('/{kategoriProduk}/tier/{tier}/hapus', [KategoriProdukTierController::class, 'destroy'])->name('tier.destroy');
+        });
+
+        Route::prefix('order-cetak-foto')->name('order-cetak-foto.')->group(function () {
+            Route::get('/', [PrintOrderController::class, 'index'])->name('index');
+            Route::get('/{printOrder}', [PrintOrderController::class, 'show'])->name('show');
+            Route::post('/{printOrder}/status', [PrintOrderController::class, 'updateStatus'])->name('status');
+            Route::post('/{printOrder}/pembayaran', [PrintOrderController::class, 'updatePembayaran'])->name('pembayaran');
+            Route::get('/{printOrder}/bukti-transfer', [PrintOrderController::class, 'buktiTransfer'])->name('bukti-transfer');
+            Route::get('/{printOrder}/label', [PrintOrderController::class, 'label'])->name('label');
+            Route::get('/{printOrder}/item/{item}/file/{index}', [PrintOrderController::class, 'downloadFile'])->whereNumber('index')->name('download-file');
+            Route::get('/{printOrder}/unduh-semua', [PrintOrderController::class, 'downloadAll'])->name('download-all');
+        });
+
+        Route::prefix('booking-studio')->name('booking-studio.')->group(function () {
+            Route::get('/', [BookingStudioController::class, 'index'])->name('index');
+            Route::get('/{photographerBooking}', [BookingStudioController::class, 'show'])->name('show');
+            Route::post('/{photographerBooking}/status', [BookingStudioController::class, 'updateStatus'])->name('status');
+        });
+    });
 });
 
 Route::prefix('internal')->name('internal.')->group(function () {
@@ -32,7 +114,7 @@ Route::prefix('internal')->name('internal.')->group(function () {
         Route::post('/login', [InternalAuthController::class, 'login'])->middleware('throttle:6,1')->name('login.attempt');
     });
 
-    Route::middleware('auth')->group(function () {
+    Route::middleware(['auth', 'area:internal'])->group(function () {
         Route::get('/', [InternalDashboardController::class, 'index'])->name('dashboard');
         Route::post('/logout', [InternalAuthController::class, 'logout'])->name('logout');
 

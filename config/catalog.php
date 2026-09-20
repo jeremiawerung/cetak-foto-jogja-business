@@ -1,5 +1,17 @@
 <?php
 
+/*
+|--------------------------------------------------------------------------
+| Katalog Cetak Foto (LEGACY - hanya dipakai sekali oleh KategoriProdukSeeder)
+|--------------------------------------------------------------------------
+|
+| Data katalog sekarang dikelola dari database lewat halaman admin
+| /internal/kategori-produk (lihat App\Services\Katalog\KatalogBuilder dan
+| App\Models\KategoriProduk). File ini tidak lagi dibaca langsung oleh
+| aplikasi - dibiarkan hanya sebagai sumber data awal seeder.
+|
+*/
+
 return [
 
     'pas_foto_paket' => [

@@ -15,7 +15,6 @@
 /database/database.sqlite
 /.claude
 /node_modules
-/public/build
 /public/hot
 /public/storage
 /storage/*.key
@@ -37,3 +36,13 @@ Thumbs.db
 # individual di folder ini yang benar-benar dipakai aplikasi).
 /public/images/katalog/Kawanua UI UX.zip
 /public/images/katalog/katalog.zip
+
+# Rekaman layar untuk keperluan diskusi/riset selama development, bukan bagian
+# aplikasi - jangan ikut ter-push ke repo publik.
+/MenuCpanel.mp4
+/Proses_Pesan_Sekarang_Sokongpublish.mp4
+
+# public/build SENGAJA di-commit (bukan di-gitignore) karena server produksi
+# belum tentu punya Node.js di shell - build asset dilakukan lokal, hasilnya
+# ikut di-push, server tinggal `git pull` tanpa perlu npm install/build.
+

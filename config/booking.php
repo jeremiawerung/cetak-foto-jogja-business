@@ -2,17 +2,6 @@
 
 return [
 
-    'jenis_acara' => [
-        'Prewedding',
-        'Ulang Tahun',
-        'Produk',
-        'Keluarga',
-        'Wisuda',
-        'Engagement',
-        'Acara Kantor / Perusahaan',
-        'Lainnya',
-    ],
-
     // Slot jam sesi foto yang bisa dipilih pelanggan.
     'jam_slot' => [
         '08:00', '09:00', '10:00', '11:00', '12:00',

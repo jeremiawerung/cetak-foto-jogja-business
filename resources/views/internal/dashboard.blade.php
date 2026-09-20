@@ -14,6 +14,12 @@
             <h2 class="font-bold text-neutral-900">Verifikasi Siswa</h2>
             <p class="mt-2 text-sm text-neutral-500">Upload roster sekolah, sinkron Google Form otomatis, dan pantau siapa yang belum isi/konflik.</p>
         </a>
+
+        <a href="{{ route('admin.dashboard') }}"
+           class="block rounded-2xl border border-neutral-200 bg-white p-6 hover:border-rose-300 hover:shadow-md transition">
+            <h2 class="font-bold text-neutral-900">Kelola Katalog Cetak Foto</h2>
+            <p class="mt-2 text-sm text-neutral-500">Atur kategori, item/varian, harga, dan gambar produk yang tampil di halaman /cetak-foto (panel terpisah).</p>
+        </a>
     </div>
 </main>
 @endsection

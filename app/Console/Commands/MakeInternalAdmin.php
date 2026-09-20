@@ -19,6 +19,11 @@ class MakeInternalAdmin extends Command
         $email = $this->ask('Email');
         $password = $this->secret('Password (minimal 8 karakter)');
         $passwordConfirmation = $this->secret('Ulangi password');
+        $role = $this->choice(
+            'Area akses (super = /internal & /admin, internal = /internal saja, katalog = /admin saja)',
+            ['super', 'internal', 'katalog'],
+            0
+        );
 
         $validator = Validator::make([
             'name' => $name,
@@ -43,7 +48,7 @@ class MakeInternalAdmin extends Command
 
         $user = User::updateOrCreate(
             ['email' => $email],
-            ['name' => $name, 'password' => Hash::make($password)]
+            ['name' => $name, 'password' => Hash::make($password), 'role' => $role]
         );
 
         $this->info($existing

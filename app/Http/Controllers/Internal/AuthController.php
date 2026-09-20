@@ -28,6 +28,12 @@ class AuthController extends Controller
                 ->withErrors(['email' => 'Email atau password salah.']);
         }
 
+        if (! Auth::user()->canAccessInternal()) {
+            Auth::logout();
+
+            return back()->withErrors(['email' => 'Akun ini tidak punya akses ke panel internal.']);
+        }
+
         $request->session()->regenerate();
 
         return redirect()->intended(route('internal.dashboard'));

@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Middleware\EnsureCanAccessArea;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Http\Request;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -12,8 +14,13 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        $middleware->redirectGuestsTo('/internal/login');
-        $middleware->redirectUsersTo('/internal');
+        $middleware->alias(['area' => EnsureCanAccessArea::class]);
+
+        // /admin (Kelola Katalog) dan /internal (Verifikasi Siswa) punya login
+        // terpisah - tamu/pengguna yang login diarahkan ke halaman yang sesuai
+        // dengan area yang sedang diakses, bukan selalu ke /internal.
+        $middleware->redirectGuestsTo(fn (Request $request) => $request->is('admin*') ? route('admin.login') : route('internal.login'));
+        $middleware->redirectUsersTo(fn (Request $request) => $request->is('admin*') ? route('admin.dashboard') : route('internal.dashboard'));
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

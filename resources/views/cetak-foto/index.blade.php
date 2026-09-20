@@ -35,11 +35,12 @@
                         @endif
                     </div>
                 </div>
-                <button type="button"
-                        class="btn-pesan shrink-0 rounded-lg bg-rose-600 px-4 py-2 text-sm font-semibold text-white hover:bg-rose-700"
-                        data-kategori="{{ $kategoriId }}">
-                    Pesan Kategori Ini
-                </button>
+                @if ($data['pricing_mode'] === 'tiered')
+                    <a href="{{ route('produk.show', $kategoriId) }}"
+                       class="shrink-0 rounded-lg bg-rose-600 px-4 py-2 text-sm font-semibold text-white hover:bg-rose-700">
+                        Lihat & Pesan
+                    </a>
+                @endif
             </div>
 
             @if ($data['pricing_mode'] === 'tiered')
@@ -74,7 +75,11 @@
                         <tbody>
                             @foreach ($data['items'] as $item)
                                 <tr class="border-b border-neutral-100">
-                                    <td class="py-2 pr-4 font-medium text-neutral-800">{{ $item['nama'] }}</td>
+                                    <td class="py-2 pr-4 font-medium text-neutral-800">
+                                        <a href="{{ route('produk.show', [$kategoriId, $item['id']]) }}" class="hover:underline hover:text-rose-600">
+                                            {{ $item['nama'] }}
+                                        </a>
+                                    </td>
                                     <td class="py-2 pr-4">
                                         @if (!empty($item['custom']))
                                             <span class="text-neutral-500">Hubungi admin</span>
@@ -100,79 +105,14 @@
     @endforeach
 </section>
 
-<section id="form-order" class="bg-white border-t border-neutral-200">
-    <div class="max-w-2xl mx-auto px-4 sm:px-6 py-10">
-        <h2 class="text-xl font-bold text-neutral-900">Form Order</h2>
-        <p class="mt-1 text-sm text-neutral-500">Isi detail order kamu, estimasi harga terhitung otomatis.</p>
-
-        <form id="order-form" class="mt-6 space-y-5" enctype="multipart/form-data" data-action="{{ route('cetak-foto.order') }}">
-            @csrf
-
-            <div>
-                <label class="block text-sm font-medium text-neutral-700">Kategori</label>
-                <select name="kategori" id="input-kategori" required
-                        class="mt-1 w-full rounded-lg border-neutral-300 focus:border-rose-500 focus:ring-rose-500">
-                    <option value="">-- Pilih kategori --</option>
-                    @foreach ($catalog as $kategoriId => $data)
-                        <option value="{{ $kategoriId }}">{{ $data['label'] }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            <div id="wrapper-varian">
-                <label class="block text-sm font-medium text-neutral-700">Varian / Ukuran</label>
-                <select name="varian" id="input-varian"
-                        class="mt-1 w-full rounded-lg border-neutral-300 focus:border-rose-500 focus:ring-rose-500">
-                    <option value="">-- Pilih kategori dulu --</option>
-                </select>
-                <p id="varian-note" class="mt-1 text-xs text-neutral-500"></p>
-            </div>
-
-            <div>
-                <label id="label-jumlah" class="block text-sm font-medium text-neutral-700">Jumlah</label>
-                <input type="number" name="jumlah" id="input-jumlah" min="1" value="1" required
-                       class="mt-1 w-full rounded-lg border-neutral-300 focus:border-rose-500 focus:ring-rose-500">
-            </div>
-
-            <div>
-                <label class="block text-sm font-medium text-neutral-700">Upload Foto</label>
-                <input type="file" name="foto[]" id="input-foto" multiple accept="image/png,image/jpeg,image/webp"
-                       class="mt-1 w-full text-sm text-neutral-600 file:mr-3 file:rounded-lg file:border-0 file:bg-rose-50 file:px-3 file:py-2 file:text-rose-600 file:font-semibold hover:file:bg-rose-100">
-                <p class="mt-1 text-xs text-neutral-500">Format JPG/PNG/WEBP, maks 10MB per foto, maks 20 foto.</p>
-            </div>
-
-            <div class="grid sm:grid-cols-2 gap-5">
-                <div>
-                    <label class="block text-sm font-medium text-neutral-700">Nama (opsional)</label>
-                    <input type="text" name="nama" class="mt-1 w-full rounded-lg border-neutral-300 focus:border-rose-500 focus:ring-rose-500">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-neutral-700">No HP / WhatsApp (opsional)</label>
-                    <input type="text" name="no_hp" class="mt-1 w-full rounded-lg border-neutral-300 focus:border-rose-500 focus:ring-rose-500">
-                </div>
-            </div>
-
-            <div>
-                <label class="block text-sm font-medium text-neutral-700">Catatan (opsional)</label>
-                <textarea name="catatan" rows="3" class="mt-1 w-full rounded-lg border-neutral-300 focus:border-rose-500 focus:ring-rose-500"></textarea>
-            </div>
-
-            <div class="rounded-xl bg-rose-50 border border-rose-100 p-4 flex items-center justify-between">
-                <span class="text-sm font-medium text-neutral-700">Estimasi Harga</span>
-                <span id="estimasi-harga" class="text-xl font-extrabold text-rose-600">Rp0</span>
-            </div>
-
-            <p id="form-error" class="hidden text-sm text-red-600"></p>
-
-            <button type="submit" id="btn-submit"
-                    class="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-500 px-4 py-3 font-semibold text-white hover:bg-emerald-600 transition">
-                Order via WhatsApp
-            </button>
-        </form>
+<section class="bg-white border-t border-neutral-200">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 py-10 text-center">
+        <h2 class="text-xl font-bold text-neutral-900">Siap Order?</h2>
+        <p class="mt-1 text-sm text-neutral-500">Klik nama produk atau "Lihat & Pesan" di atas untuk lihat detail, masukkan ke keranjang, lalu checkout.</p>
+        <a href="{{ route('keranjang.index') }}"
+           class="mt-4 inline-flex items-center justify-center gap-2 rounded-lg bg-rose-600 px-6 py-3 font-semibold text-white hover:bg-rose-700 transition">
+            Lihat Keranjang
+        </a>
     </div>
 </section>
-
-<script>
-    window.CATALOG = @json($catalog);
-</script>
 @endsection

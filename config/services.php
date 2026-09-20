@@ -46,6 +46,30 @@ return [
         'number' => env('WHATSAPP_NUMBER', '62895708600900'),
     ],
 
+    'toko' => [
+        'nama' => env('TOKO_NAMA', 'Cetak Foto Jogja'),
+        'alamat' => env('TOKO_ALAMAT', 'Jl. Tempel, Gendol, Margorejo, Kec. Tempel, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55552'),
+    ],
+
+    'bank' => [
+        'nama_bank' => env('BANK_NAMA', 'BCA'),
+        'no_rekening' => env('BANK_NO_REKENING', '1234567890'),
+        'atas_nama' => env('BANK_ATAS_NAMA', 'Cetak Foto Jogja'),
+    ],
+
+    'qris' => [
+        'gambar' => env('QRIS_GAMBAR', 'images/pembayaran/qris.png'),
+    ],
+
+    // RajaOngkir v2 (by Komerce) - https://dev-collaborator.komerce.id
+    'rajaongkir' => [
+        'base_url' => env('RAJAONGKIR_BASE_URL', 'https://rajaongkir.komerce.id/api/v1'),
+        'api_key' => env('RAJAONGKIR_API_KEY'),
+        'origin_id' => env('RAJAONGKIR_ORIGIN_ID'),
+        'origin_label' => env('RAJAONGKIR_ORIGIN_LABEL'),
+        'courier' => env('RAJAONGKIR_COURIER', 'jne:jnt:sicepat:anteraja:ninja'),
+    ],
+
     'kartu_pelajar' => [
         'pdftotext_path' => env('PDFTOTEXT_PATH', 'pdftotext'),
         'duplicate_threshold_seconds' => env('KARTU_PELAJAR_DUPLICATE_THRESHOLD', 5),

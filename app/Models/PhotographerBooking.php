@@ -6,16 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class PhotographerBooking extends Model
 {
+    public const STATUSES = [
+        'baru' => 'Baru',
+        'dikonfirmasi' => 'Dikonfirmasi',
+        'selesai' => 'Selesai',
+        'dibatalkan' => 'Dibatalkan',
+    ];
+
     protected $fillable = [
         'nama',
         'no_hp',
-        'jenis_acara',
         'lokasi',
         'tanggal',
         'jam',
         'estimasi_orang',
-        'paket',
         'catatan',
+        'status',
     ];
 
     protected $casts = [

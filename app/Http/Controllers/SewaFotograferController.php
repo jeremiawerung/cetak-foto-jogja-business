@@ -11,11 +11,9 @@ class SewaFotograferController extends Controller
 {
     public function index()
     {
-        $paket = config('photographer_packages');
-        $jenisAcara = config('booking.jenis_acara');
         $jamSlot = config('booking.jam_slot');
 
-        return view('sewa-fotografer.index', compact('paket', 'jenisAcara', 'jamSlot'));
+        return view('sewa-fotografer.index', compact('jamSlot'));
     }
 
     public function ketersediaan(Request $request)
@@ -45,12 +43,10 @@ class SewaFotograferController extends Controller
         $validated = $request->validate([
             'nama' => ['required', 'string', 'max:255'],
             'no_hp' => ['required', 'string', 'max:30'],
-            'jenis_acara' => ['required', 'string', 'in:'.implode(',', config('booking.jenis_acara'))],
             'lokasi' => ['required', 'string', 'max:255'],
             'tanggal' => ['required', 'date', 'after_or_equal:today'],
             'jam' => ['required', 'string', 'in:'.implode(',', config('booking.jam_slot'))],
             'estimasi_orang' => ['nullable', 'integer', 'min:1', 'max:100000'],
-            'paket' => ['nullable', 'string', 'max:255'],
             'catatan' => ['nullable', 'string', 'max:1000'],
         ]);
 
@@ -72,22 +68,18 @@ class SewaFotograferController extends Controller
             ], 422);
         }
 
-        $paketInfo = collect(config('photographer_packages'))->firstWhere('id', $validated['paket'] ?? null);
-
         $airtable->log(config('services.airtable.table_sewa_fotografer'), [
             'Nama' => $validated['nama'],
             'No HP' => $validated['no_hp'],
-            'Jenis Acara' => $validated['jenis_acara'],
             'Lokasi' => $validated['lokasi'],
             'Tanggal' => $validated['tanggal'],
             'Jam' => $validated['jam'],
             'Estimasi Orang' => $validated['estimasi_orang'] ?? '',
-            'Paket' => $paketInfo['nama'] ?? '',
             'Catatan' => $validated['catatan'] ?? '',
             'Waktu Booking' => now()->toDateTimeString(),
         ]);
 
-        $pesan = $this->susunPesanWhatsApp($validated, $paketInfo);
+        $pesan = $this->susunPesanWhatsApp($validated);
         $waLink = $whatsapp->build($pesan);
 
         return response()->json([
@@ -96,22 +88,17 @@ class SewaFotograferController extends Controller
         ]);
     }
 
-    private function susunPesanWhatsApp(array $data, ?array $paketInfo): string
+    private function susunPesanWhatsApp(array $data): string
     {
         $baris = [];
         $baris[] = 'Halo Cetak Foto Jogja, saya ingin booking sewa fotografer:';
         $baris[] = '';
-        $baris[] = 'Jenis Acara: '.$data['jenis_acara'];
         $baris[] = 'Lokasi: '.$data['lokasi'];
         $baris[] = 'Tanggal: '.$data['tanggal'];
         $baris[] = 'Jam: '.$data['jam'];
 
         if (! empty($data['estimasi_orang'])) {
             $baris[] = 'Estimasi Jumlah Orang: '.$data['estimasi_orang'];
-        }
-
-        if ($paketInfo) {
-            $baris[] = 'Paket: '.$paketInfo['nama'].' ('.$paketInfo['durasi'].', '.$paketInfo['jumlah_foto_edit'].')';
         }
 
         if (! empty($data['catatan'])) {

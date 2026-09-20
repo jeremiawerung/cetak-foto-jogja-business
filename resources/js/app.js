@@ -1,10 +1,13 @@
 import './bootstrap';
 import { initNav } from './modules/nav';
-import { initCetakFoto } from './modules/cetak-foto';
+import { initProdukDetail } from './modules/produk-detail';
+import { initCheckoutPengiriman, initCheckoutKonfirmasi } from './modules/checkout';
 import { initSewaFotografer } from './modules/sewa-fotografer';
 
 document.addEventListener('DOMContentLoaded', () => {
     initNav();
-    initCetakFoto();
+    initProdukDetail();
+    initCheckoutPengiriman();
+    initCheckoutKonfirmasi();
     initSewaFotografer();
 });

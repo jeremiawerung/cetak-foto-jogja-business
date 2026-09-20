@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -45,5 +46,21 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /** "super" bisa akses area /internal maupun /admin sekaligus. */
+    public function isSuper(): bool
+    {
+        return $this->role === 'super';
+    }
+
+    public function canAccessInternal(): bool
+    {
+        return in_array($this->role, ['super', 'internal'], true);
+    }
+
+    public function canAccessKatalog(): bool
+    {
+        return in_array($this->role, ['super', 'katalog'], true);
     }
 }
