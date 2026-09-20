@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\PengaturanPembayaran;
 use App\Models\PrintOrder;
+use App\Models\User;
+use App\Notifications\OrderMasukNotification;
 use App\Services\AirtableLogger;
 use App\Services\Katalog\HargaCalculator;
 use App\Services\Katalog\KatalogBuilder;
@@ -12,6 +14,7 @@ use App\Services\WhatsAppLinkBuilder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
@@ -262,6 +265,8 @@ class CheckoutController extends Controller
                 'gdrive_link' => $item['gdrive_link'],
             ]);
         }
+
+        Notification::send(User::adminKatalog(), new OrderMasukNotification($order));
 
         $airtable->log(config('services.airtable.table_cetak_foto'), [
             'Nomor Pesanan' => $order->nomor_pesanan,

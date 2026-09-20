@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\PhotographerBooking;
+use App\Models\User;
+use App\Notifications\BookingMasukNotification;
 use App\Services\AirtableLogger;
 use App\Services\WhatsAppLinkBuilder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class SewaFotograferController extends Controller
 {
@@ -67,6 +70,8 @@ class SewaFotograferController extends Controller
                 'message' => 'Mohon maaf, tanggal dan jam tersebut baru saja dibooking orang lain. Silakan pilih jadwal lain.',
             ], 422);
         }
+
+        Notification::send(User::adminKatalog(), new BookingMasukNotification($booking));
 
         $airtable->log(config('services.airtable.table_sewa_fotografer'), [
             'Nama' => $validated['nama'],

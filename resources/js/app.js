@@ -3,6 +3,7 @@ import { initNav } from './modules/nav';
 import { initProdukDetail } from './modules/produk-detail';
 import { initCheckoutPengiriman, initCheckoutKonfirmasi } from './modules/checkout';
 import { initSewaFotografer } from './modules/sewa-fotografer';
+import { initNotifikasi } from './modules/notifikasi';
 
 document.addEventListener('DOMContentLoaded', () => {
     initNav();
@@ -10,4 +11,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initCheckoutPengiriman();
     initCheckoutKonfirmasi();
     initSewaFotografer();
+    initNotifikasi();
 });

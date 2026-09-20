@@ -63,4 +63,10 @@ class User extends Authenticatable
     {
         return in_array($this->role, ['super', 'katalog'], true);
     }
+
+    /** Admin katalog (super + katalog) - penerima notifikasi order/booking baru. */
+    public static function adminKatalog()
+    {
+        return static::whereIn('role', ['super', 'katalog'])->get();
+    }
 }

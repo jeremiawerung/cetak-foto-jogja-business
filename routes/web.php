@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\KategoriProdukController;
 use App\Http\Controllers\Admin\KategoriProdukItemController;
 use App\Http\Controllers\Admin\KategoriProdukTierController;
+use App\Http\Controllers\Admin\NotifikasiController;
 use App\Http\Controllers\Admin\PengaturanPembayaranController;
 use App\Http\Controllers\Admin\PrintOrderController;
 use App\Http\Controllers\CekPesananController;
@@ -110,6 +111,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::prefix('pengaturan-pembayaran')->name('pengaturan-pembayaran.')->group(function () {
             Route::get('/', [PengaturanPembayaranController::class, 'edit'])->name('edit');
             Route::post('/', [PengaturanPembayaranController::class, 'update'])->name('update');
+        });
+
+        Route::prefix('notifikasi')->name('notifikasi.')->group(function () {
+            Route::get('/', [NotifikasiController::class, 'index'])->name('index');
+            Route::post('/{notifikasi}/baca', [NotifikasiController::class, 'tandaiDibaca'])->name('baca');
+            Route::post('/baca-semua', [NotifikasiController::class, 'tandaiSemuaDibaca'])->name('baca-semua');
         });
     });
 });
