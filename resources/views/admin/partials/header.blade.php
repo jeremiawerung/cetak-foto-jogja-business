@@ -15,6 +15,10 @@
                    class="{{ request()->routeIs('admin.booking-studio.*') ? 'text-rose-600 font-semibold' : 'text-neutral-500 hover:text-rose-600' }}">
                     Booking Studio
                 </a>
+                <a href="{{ route('admin.pengaturan-pembayaran.edit') }}"
+                   class="{{ request()->routeIs('admin.pengaturan-pembayaran.*') ? 'text-rose-600 font-semibold' : 'text-neutral-500 hover:text-rose-600' }}">
+                    Pengaturan Pembayaran
+                </a>
             </nav>
         </div>
         <form method="POST" action="{{ route('admin.logout') }}" class="shrink-0">

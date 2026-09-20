@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PengaturanPembayaran;
 use App\Models\PrintOrder;
 use App\Services\AirtableLogger;
 use App\Services\Katalog\HargaCalculator;
@@ -164,12 +165,20 @@ class CheckoutController extends Controller
             return redirect()->route('cetak-foto.index')->with('status', 'Ada produk di keranjang yang sudah tidak tersedia, mohon ulangi dari awal.');
         }
 
+        $pengaturanPembayaran = PengaturanPembayaran::current();
+
         return view('cetak-foto.checkout.konfirmasi', [
             'data' => $data,
             'items' => $items,
             'ringkasan' => $ringkasan,
-            'bank' => config('services.bank'),
-            'qris' => config('services.qris'),
+            'bank' => [
+                'nama_bank' => $pengaturanPembayaran->nama_bank,
+                'no_rekening' => $pengaturanPembayaran->no_rekening,
+                'atas_nama' => $pengaturanPembayaran->atas_nama,
+            ],
+            'qris' => [
+                'gambar' => $pengaturanPembayaran->qris_gambar,
+            ],
         ]);
     }
 

@@ -93,7 +93,7 @@
                         </div>
                         <div id="info-qris" class="hidden rounded-lg bg-neutral-50 border border-neutral-200 p-3 text-sm text-neutral-700 text-center">
                             <p class="mb-2">Scan QRIS berikut untuk bayar <span class="font-semibold">Rp{{ number_format($totalBayar, 0, ',', '.') }}</span>:</p>
-                            @if (file_exists(public_path($qris['gambar'])))
+                            @if (!empty($qris['gambar']) && file_exists(public_path($qris['gambar'])))
                                 <img src="{{ asset($qris['gambar']) }}" alt="QRIS Cetak Foto Jogja" class="mx-auto w-48 h-48 object-contain">
                             @else
                                 <div class="mx-auto w-48 h-48 flex items-center justify-center rounded-lg border-2 border-dashed border-neutral-300 text-xs text-neutral-400 p-3">

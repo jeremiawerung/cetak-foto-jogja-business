@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\KategoriProdukController;
 use App\Http\Controllers\Admin\KategoriProdukItemController;
 use App\Http\Controllers\Admin\KategoriProdukTierController;
+use App\Http\Controllers\Admin\PengaturanPembayaranController;
 use App\Http\Controllers\Admin\PrintOrderController;
 use App\Http\Controllers\CekPesananController;
 use App\Http\Controllers\CetakFotoController;
@@ -104,6 +105,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/', [BookingStudioController::class, 'index'])->name('index');
             Route::get('/{photographerBooking}', [BookingStudioController::class, 'show'])->name('show');
             Route::post('/{photographerBooking}/status', [BookingStudioController::class, 'updateStatus'])->name('status');
+        });
+
+        Route::prefix('pengaturan-pembayaran')->name('pengaturan-pembayaran.')->group(function () {
+            Route::get('/', [PengaturanPembayaranController::class, 'edit'])->name('edit');
+            Route::post('/', [PengaturanPembayaranController::class, 'update'])->name('update');
         });
     });
 });
