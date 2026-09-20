@@ -42,6 +42,11 @@ Thumbs.db
 /MenuCpanel.mp4
 /Proses_Pesan_Sekarang_Sokongpublish.mp4
 
+# Panduan admin - berisi email & password login asli, jangan pernah ikut
+# ter-push ke repo publik. Simpan/bagikan filenya secara terpisah & aman.
+/PANDUAN_ADMIN.md
+/Panduan_Admin.pdf
+
 # public/build SENGAJA di-commit (bukan di-gitignore) karena server produksi
 # belum tentu punya Node.js di shell - build asset dilakukan lokal, hasilnya
 # ikut di-push, server tinggal `git pull` tanpa perlu npm install/build.

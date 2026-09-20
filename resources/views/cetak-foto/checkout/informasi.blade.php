@@ -23,13 +23,13 @@
 
             <div class="grid sm:grid-cols-2 gap-5">
                 <div>
-                    <label class="block text-sm font-medium text-neutral-700">Nama (opsional)</label>
-                    <input type="text" name="nama" value="{{ old('nama', $data['nama'] ?? '') }}"
+                    <label class="block text-sm font-medium text-neutral-700">Nama</label>
+                    <input type="text" name="nama" value="{{ old('nama', $data['nama'] ?? '') }}" required
                            class="mt-1 w-full rounded-lg border-neutral-300 focus:border-rose-500 focus:ring-rose-500">
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-neutral-700">No HP / WhatsApp (opsional)</label>
-                    <input type="text" name="no_hp" value="{{ old('no_hp', $data['no_hp'] ?? '') }}"
+                    <label class="block text-sm font-medium text-neutral-700">No HP / WhatsApp</label>
+                    <input type="text" name="no_hp" value="{{ old('no_hp', $data['no_hp'] ?? '') }}" required
                            class="mt-1 w-full rounded-lg border-neutral-300 focus:border-rose-500 focus:ring-rose-500">
                 </div>
             </div>

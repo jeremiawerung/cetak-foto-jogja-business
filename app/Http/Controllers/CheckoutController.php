@@ -42,8 +42,8 @@ class CheckoutController extends Controller
         }
 
         $validated = $request->validate([
-            'nama' => ['nullable', 'string', 'max:255'],
-            'no_hp' => ['nullable', 'string', 'max:30'],
+            'nama' => ['required', 'string', 'max:255'],
+            'no_hp' => ['required', 'string', 'max:30'],
             'catatan' => ['nullable', 'string', 'max:1000'],
         ]);
 

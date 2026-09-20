@@ -158,7 +158,7 @@ class CheckoutFlowTest extends TestCase
 
         $this->get(route('keranjang.index'))->assertOk();
 
-        $this->post(route('checkout.informasi.simpan'), ['nama' => 'Budi']);
+        $this->post(route('checkout.informasi.simpan'), ['nama' => 'Budi', 'no_hp' => '08123456789']);
         $this->post(route('checkout.pengiriman.simpan'), ['metode_ambil' => 'ambil_toko']);
         $this->post(route('checkout.konfirmasi.simpan'), [
             'metode_bayar' => 'bayar_toko',
@@ -214,7 +214,7 @@ class CheckoutFlowTest extends TestCase
 
         $this->tambahKeKeranjang('custom_test', 'item_custom', 1);
 
-        $this->post(route('checkout.informasi.simpan'), ['nama' => 'Budi'])
+        $this->post(route('checkout.informasi.simpan'), ['nama' => 'Budi', 'no_hp' => '08123456789'])
             ->assertRedirect(route('checkout.konfirmasi'));
 
         $this->get(route('checkout.pengiriman'))->assertRedirect(route('checkout.konfirmasi'));
@@ -240,7 +240,7 @@ class CheckoutFlowTest extends TestCase
         $this->buatKategoriVarian();
         $this->tambahKeKeranjang('polaroid_test', 'ecer', 3);
 
-        $this->post(route('checkout.informasi.simpan'), ['nama' => 'Budi']);
+        $this->post(route('checkout.informasi.simpan'), ['nama' => 'Budi', 'no_hp' => '08123456789']);
 
         $this->post(route('checkout.pengiriman.simpan'), [
             'metode_ambil' => 'dikirim',
@@ -277,7 +277,7 @@ class CheckoutFlowTest extends TestCase
         $this->fakeRajaOngkir();
         $this->buatKategoriVarian();
         $this->tambahKeKeranjang('polaroid_test', 'ecer', 3);
-        $this->post(route('checkout.informasi.simpan'), ['nama' => 'Budi']);
+        $this->post(route('checkout.informasi.simpan'), ['nama' => 'Budi', 'no_hp' => '08123456789']);
 
         $response = $this->post(route('checkout.pengiriman.simpan'), [
             'metode_ambil' => 'dikirim',
@@ -295,7 +295,7 @@ class CheckoutFlowTest extends TestCase
     {
         $this->buatKategoriVarian();
         $this->tambahKeKeranjang('polaroid_test', 'ecer', 3);
-        $this->post(route('checkout.informasi.simpan'), []);
+        $this->post(route('checkout.informasi.simpan'), ['nama' => 'Budi', 'no_hp' => '08123456789']);
         $this->post(route('checkout.pengiriman.simpan'), ['metode_ambil' => 'ambil_toko']);
 
         $response = $this->post(route('checkout.konfirmasi.simpan'), [
@@ -311,7 +311,7 @@ class CheckoutFlowTest extends TestCase
         $this->fakeRajaOngkir();
         $this->buatKategoriVarian();
         $this->tambahKeKeranjang('polaroid_test', 'ecer', 3);
-        $this->post(route('checkout.informasi.simpan'), []);
+        $this->post(route('checkout.informasi.simpan'), ['nama' => 'Budi', 'no_hp' => '08123456789']);
 
         $this->post(route('checkout.pengiriman.simpan'), [
             'metode_ambil' => 'dikirim',
@@ -335,7 +335,7 @@ class CheckoutFlowTest extends TestCase
     {
         $this->buatKategoriVarian();
         $this->tambahKeKeranjang('polaroid_test', 'ecer', 3);
-        $this->post(route('checkout.informasi.simpan'), []);
+        $this->post(route('checkout.informasi.simpan'), ['nama' => 'Budi', 'no_hp' => '08123456789']);
         $this->post(route('checkout.pengiriman.simpan'), ['metode_ambil' => 'ambil_toko']);
 
         $response = $this->post(route('checkout.konfirmasi.simpan'), [
