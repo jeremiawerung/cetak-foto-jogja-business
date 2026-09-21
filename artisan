@@ -6,6 +6,10 @@ use Symfony\Component\Console\Input\ArgvInput;
 
 define('LARAVEL_START', microtime(true));
 
+// Polyfill mb_split() untuk hosting yang PHP-nya tidak menyediakannya - lihat komentar
+// di bootstrap/polyfills.php.
+require __DIR__.'/bootstrap/polyfills.php';
+
 // Register the Composer autoloader...
 require __DIR__.'/vendor/autoload.php';
 

@@ -5,6 +5,11 @@ use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
 
+// Polyfill mb_split() untuk hosting yang PHP-nya tidak menyediakannya (lihat komentar
+// di file itu) - harus dimuat sebelum apa pun lain, karena Laravel memanggilnya di
+// hampir setiap request lewat Illuminate\Support\Str::studly().
+require __DIR__.'/../bootstrap/polyfills.php';
+
 // Determine if the application is in maintenance mode...
 if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
     require $maintenance;
