@@ -14,6 +14,13 @@ class GoogleSheetsClient
 {
     private ?Sheets $service = null;
 
+    public function isConfigured(): bool
+    {
+        $credentialsPath = config('services.verifikasi_siswa.google_service_account_path');
+
+        return is_string($credentialsPath) && is_file($credentialsPath);
+    }
+
     /**
      * @return list<list<string>> baris demi baris, tiap baris list nilai kolom (string)
      */

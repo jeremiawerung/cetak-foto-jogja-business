@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\VerifikasiSiswaProyek;
 use App\Services\VerifikasiSiswa\ActivityLogger;
 use App\Services\VerifikasiSiswa\GFormSyncer;
+use App\Services\VerifikasiSiswa\GoogleSheetsClient;
 use Illuminate\Console\Command;
 
 class SyncGFormResponses extends Command
@@ -13,8 +14,14 @@ class SyncGFormResponses extends Command
 
     protected $description = 'Ambil respons Google Form baru (via Sheets API) dan cocokkan ke roster siswa';
 
-    public function handle(GFormSyncer $syncer, ActivityLogger $logger): int
+    public function handle(GFormSyncer $syncer, ActivityLogger $logger, GoogleSheetsClient $client): int
     {
+        if (! $client->isConfigured()) {
+            $this->info('Sinkron dilewati: kredensial Google Service Account belum dikonfigurasi.');
+
+            return self::SUCCESS;
+        }
+
         $proyekId = $this->argument('proyek');
 
         $query = VerifikasiSiswaProyek::query()->whereNotNull('google_sheet_id');
