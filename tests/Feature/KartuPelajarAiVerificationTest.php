@@ -13,6 +13,12 @@ class KartuPelajarAiVerificationTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->markTestSkipped('kartu-pelajar routes are dormant (commented out in routes/web.php, superseded by verifikasi-siswa) — see the comment above the route group.');
+    }
+
     public function test_redirects_to_index_when_no_audit_session_exists(): void
     {
         $user = User::factory()->create();

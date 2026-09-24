@@ -13,6 +13,12 @@ class KartuPelajarAuditFlowTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->markTestSkipped('kartu-pelajar routes are dormant (commented out in routes/web.php, superseded by verifikasi-siswa) — see the comment above the route group.');
+    }
+
     private const SAMPLE_DIR = 'Sample/SMPN 15 YOGYAKARTA/DATA';
 
     public function test_full_upload_and_audit_flow_with_real_sample_files(): void

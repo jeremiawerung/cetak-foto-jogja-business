@@ -14,6 +14,12 @@ class KartuPelajarBatchResolutionTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->markTestSkipped('kartu-pelajar routes are dormant (commented out in routes/web.php, superseded by verifikasi-siswa) — see the comment above the route group.');
+    }
+
     private function makeRow(string $source, int $rowNumber, string $nama, string $kelas, string $tanggalLahir): RowAuditResult
     {
         return new RowAuditResult($source, $rowNumber, [

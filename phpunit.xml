@@ -28,6 +28,10 @@
         <env name="DB_URL" value=""/>
         <env name="MAIL_MAILER" value="array"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
+        <!-- Dummy id, not a real credential: RajaOngkirService::hitungOngkir() short-circuits
+             to an empty result whenever origin_id is falsy, before HTTP::fake() in tests
+             even gets a chance to intercept the request. -->
+        <env name="RAJAONGKIR_ORIGIN_ID" value="501"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="PULSE_ENABLED" value="false"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
