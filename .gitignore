@@ -41,11 +41,18 @@ Thumbs.db
 # aplikasi - jangan ikut ter-push ke repo publik.
 /MenuCpanel.mp4
 /Proses_Pesan_Sekarang_Sokongpublish.mp4
+/Mengulang.mp4
 
 # Panduan admin - berisi email & password login asli, jangan pernah ikut
 # ter-push ke repo publik. Simpan/bagikan filenya secara terpisah & aman.
 /PANDUAN_ADMIN.md
 /Panduan_Admin.pdf
+
+# Dokumen SDLC (PRD, User Stories, Project Plan/Risk/RTM/Test Case, ERD,
+# Deployment Runbook, Changelog) - bukan bagian aplikasi, dan Deployment
+# Runbook menyebutkan struktur folder & akun hosting internal - jangan ikut
+# ter-push ke repo publik.
+/Dokumen_SDLC
 
 # public/build SENGAJA di-commit (bukan di-gitignore) karena server produksi
 # belum tentu punya Node.js di shell - build asset dilakukan lokal, hasilnya
