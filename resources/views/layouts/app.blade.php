@@ -4,10 +4,54 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Cetak Foto Jogja')</title>
-    <meta name="description" content="Cetak foto pas foto, cetak reguler, pigura, polaroid, hingga sewa fotografer panggilan di Jogja. Order gampang lewat WhatsApp.">
+    @php
+        $seoDescription = trim($__env->yieldContent('description', 'Cetak foto Jogja, Yogyakarta & Jogjakarta online: pas foto, cetak reguler, pigura, polaroid, hingga sewa fotografer panggilan se-DIY (Sleman, Bantul, Kota Jogja). Order gampang lewat WhatsApp, kirim ke seluruh Indonesia.'));
+        $seoImage = trim($__env->yieldContent('image', asset('images/cetak-foto-jogja-logo-HD.png')));
+        $seoTitle = trim($__env->yieldContent('title', 'Cetak Foto Jogja'));
+    @endphp
+    <meta name="description" content="{{ $seoDescription }}">
+    <meta name="robots" content="@yield('robots', 'index, follow')">
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{ config('services.toko.nama') }}">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:title" content="{{ $seoTitle }}">
+    <meta property="og:description" content="{{ $seoDescription }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:image" content="{{ $seoImage }}">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $seoTitle }}">
+    <meta name="twitter:description" content="{{ $seoDescription }}">
+    <meta name="twitter:image" content="{{ $seoImage }}">
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
+
+    <script type="application/ld+json">
+        {!! json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'LocalBusiness',
+            'name' => config('services.toko.nama'),
+            'image' => asset('images/cetak-foto-jogja-logo-HD.png'),
+            'url' => url('/'),
+            'telephone' => '+'.ltrim(config('services.whatsapp.number'), '+'),
+            'priceRange' => 'Rp5.000 - Rp500.000',
+            'address' => [
+                '@type' => 'PostalAddress',
+                'streetAddress' => config('services.toko.alamat'),
+                'addressLocality' => 'Sleman',
+                'addressRegion' => 'Daerah Istimewa Yogyakarta',
+                'postalCode' => '55552',
+                'addressCountry' => 'ID',
+            ],
+            'areaServed' => ['Yogyakarta', 'Jogja', 'Sleman', 'Bantul', 'Kota Yogyakarta', 'Gunungkidul', 'Kulon Progo', 'Daerah Istimewa Yogyakarta'],
+            'hasMap' => 'https://maps.app.goo.gl/XV2h6SeEgFWF8is39',
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG) !!}
+    </script>
+    @stack('schema')
 </head>
 <body class="bg-neutral-50 text-neutral-800 antialiased">
 

@@ -24,9 +24,12 @@ use App\Http\Controllers\Internal\VerifikasiSiswaProyekController;
 use App\Http\Controllers\Internal\VerifikasiSiswaResolusiController;
 use App\Http\Controllers\Internal\VerifikasiSiswaRosterController;
 use App\Http\Controllers\SewaFotograferController;
+use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
 Route::prefix('cetak-foto')->name('cetak-foto.')->group(function () {
     Route::get('/', [CetakFotoController::class, 'index'])->name('index');

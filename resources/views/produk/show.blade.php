@@ -5,9 +5,36 @@
     $gambarProduk = $item['gambar'] ?? $kategoriData['gambar'] ?? null;
     $gambarProduk = $gambarProduk && file_exists(public_path($gambarProduk)) ? $gambarProduk : null;
     $isCustom = ! empty($item['custom']);
+    $deskripsiProduk = $item['rincian'] ?? $kategoriData['deskripsi'] ?? "Cetak {$namaProduk} online di Jogja, Yogyakarta & Jogjakarta. Order lewat WhatsApp, kirim se-DIY & seluruh Indonesia.";
+    $hargaProduk = $item['harga'] ?? ($kategoriData['tiers'][0]['harga'] ?? null);
 @endphp
 
 @section('title', "{$namaProduk} - Cetak Foto Jogja")
+@section('description', \Illuminate\Support\Str::limit("{$namaProduk}: {$deskripsiProduk}", 155))
+@if ($gambarProduk)
+    @section('image', asset($gambarProduk))
+@endif
+
+@if (! $isCustom && $hargaProduk)
+    @push('schema')
+    <script type="application/ld+json">
+        {!! json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'Product',
+            'name' => $namaProduk,
+            'description' => \Illuminate\Support\Str::limit($deskripsiProduk, 300),
+            'image' => $gambarProduk ? asset($gambarProduk) : asset('images/cetak-foto-jogja-logo-HD.png'),
+            'offers' => [
+                '@type' => 'Offer',
+                'priceCurrency' => 'IDR',
+                'price' => (string) $hargaProduk,
+                'availability' => 'https://schema.org/InStock',
+                'url' => url()->current(),
+            ],
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG) !!}
+    </script>
+    @endpush
+@endif
 
 @section('content')
 <section class="max-w-4xl mx-auto px-4 sm:px-6 py-10">

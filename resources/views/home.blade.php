@@ -1,6 +1,42 @@
 @extends('layouts.app')
 
-@section('title', 'Cetak Foto Jogja - Cetak Foto & Sewa Fotografer')
+@section('title', 'Cetak Foto Jogja - Cetak Foto & Sewa Fotografer Online')
+@section('description', 'Cetak foto Jogja, Yogyakarta, Jogjakarta & DIY online: pas foto, cetak reguler, pigura, polaroid, hingga sewa fotografer panggilan. Order gampang lewat WhatsApp, bisa antar-jemput se-Sleman, Bantul, Kota Jogja, Gunungkidul, dan Kulon Progo.')
+
+@push('schema')
+<script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'FAQPage',
+        'mainEntity' => [
+            [
+                '@type' => 'Question',
+                'name' => 'Apakah bisa cetak foto online di Jogja tanpa datang ke toko?',
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text' => 'Bisa. Kamu tinggal pilih produk, upload foto atau tempel link Google Drive, lalu order dan pembayaran diselesaikan lewat WhatsApp. Hasil cetak bisa diambil di toko (Tempel, Sleman) atau dikirim ke seluruh Yogyakarta, Jogjakarta, dan Indonesia.',
+                ],
+            ],
+            [
+                '@type' => 'Question',
+                'name' => 'Apakah Cetak Foto Jogja melayani area di luar Kota Yogyakarta?',
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text' => 'Iya. Kami melayani pemesanan cetak foto online dari seluruh Daerah Istimewa Yogyakarta (DIY) - Kota Yogyakarta, Sleman, Bantul, Gunungkidul, dan Kulon Progo - serta pengiriman ke luar kota lewat jasa ekspedisi.',
+                ],
+            ],
+            [
+                '@type' => 'Question',
+                'name' => 'Berapa lama proses cetak foto di Cetak Foto Jogja?',
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text' => 'Sebagian besar pesanan cetak foto reguler dan pas foto selesai dalam 1 hari kerja. Untuk produk custom seperti pigura atau mini canvas, admin akan konfirmasi estimasi waktu lewat WhatsApp setelah pesanan masuk.',
+                ],
+            ],
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG) !!}
+</script>
+@endpush
 
 @section('content')
 <section class="bg-gradient-to-b from-rose-50 to-neutral-50">
@@ -8,6 +44,9 @@
         <h1 class="text-3xl sm:text-4xl font-extrabold text-neutral-900">Cetak Foto Jogja</h1>
         <p class="mt-3 text-neutral-600 max-w-xl mx-auto">
             Solusi cetak foto dan sewa fotografer panggilan di Jogja. Pilih layanan yang kamu butuhkan, isi form, order langsung lewat WhatsApp.
+        </p>
+        <p class="mt-2 text-sm text-neutral-500 max-w-xl mx-auto">
+            Melayani cetak foto online se-Yogyakarta &amp; Jogjakarta: Kota Jogja, Sleman, Bantul, Gunungkidul, Kulon Progo (DIY), dengan pengiriman ke seluruh Indonesia.
         </p>
     </div>
 </section>
@@ -54,6 +93,24 @@
                 @endif
             </div>
         @endfor
+    </div>
+</section>
+
+<section class="max-w-6xl mx-auto px-4 sm:px-6 pb-14">
+    <h2 class="text-lg font-bold text-neutral-900">Pertanyaan Umum</h2>
+    <div class="mt-4 space-y-4">
+        <div class="rounded-xl border border-neutral-200 bg-white p-4 sm:p-5">
+            <h3 class="font-semibold text-neutral-900">Apakah bisa cetak foto online di Jogja tanpa datang ke toko?</h3>
+            <p class="mt-1 text-sm text-neutral-600">Bisa. Kamu tinggal pilih produk, upload foto atau tempel link Google Drive, lalu order dan pembayaran diselesaikan lewat WhatsApp. Hasil cetak bisa diambil di toko (Tempel, Sleman) atau dikirim ke seluruh Yogyakarta, Jogjakarta, dan Indonesia.</p>
+        </div>
+        <div class="rounded-xl border border-neutral-200 bg-white p-4 sm:p-5">
+            <h3 class="font-semibold text-neutral-900">Apakah Cetak Foto Jogja melayani area di luar Kota Yogyakarta?</h3>
+            <p class="mt-1 text-sm text-neutral-600">Iya. Kami melayani pemesanan cetak foto online dari seluruh Daerah Istimewa Yogyakarta (DIY) - Kota Yogyakarta, Sleman, Bantul, Gunungkidul, dan Kulon Progo - serta pengiriman ke luar kota lewat jasa ekspedisi.</p>
+        </div>
+        <div class="rounded-xl border border-neutral-200 bg-white p-4 sm:p-5">
+            <h3 class="font-semibold text-neutral-900">Berapa lama proses cetak foto di Cetak Foto Jogja?</h3>
+            <p class="mt-1 text-sm text-neutral-600">Sebagian besar pesanan cetak foto reguler dan pas foto selesai dalam 1 hari kerja. Untuk produk custom seperti pigura atau mini canvas, admin akan konfirmasi estimasi waktu lewat WhatsApp setelah pesanan masuk.</p>
+        </div>
     </div>
 </section>
 

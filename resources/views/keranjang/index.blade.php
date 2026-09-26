@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Keranjang - Cetak Foto Jogja')
+@section('robots', 'noindex, nofollow')
 
 @section('content')
 <section class="max-w-2xl mx-auto px-4 sm:px-6 py-10">

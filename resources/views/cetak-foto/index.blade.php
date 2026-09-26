@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Katalog & Order Cetak Foto - Cetak Foto Jogja')
+@section('title', 'Katalog & Harga Cetak Foto Jogja, Yogyakarta & Jogjakarta')
+@section('description', 'Daftar harga cetak foto Jogja terbaru: pas foto, cetak reguler, pigura, polaroid, photo strip, mini canvas, dan jasa editing. Pesan online, order lewat WhatsApp, kirim ke Yogyakarta, Jogjakarta, dan seluruh DIY.')
 
 @section('content')
 <section class="bg-rose-50 border-b border-rose-100">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10">
-        <h1 class="text-2xl sm:text-3xl font-extrabold text-neutral-900">Katalog & Harga Cetak Foto</h1>
-        <p class="mt-2 text-neutral-600 max-w-2xl">Pilih produk, isi jumlah, dan upload foto. Estimasi harga muncul otomatis, lalu order langsung lewat WhatsApp.</p>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-neutral-900">Katalog & Harga Cetak Foto Jogja</h1>
+        <p class="mt-2 text-neutral-600 max-w-2xl">Pilih produk, isi jumlah, dan upload foto. Estimasi harga muncul otomatis, lalu order langsung lewat WhatsApp - melayani cetak foto online se-Yogyakarta, Jogjakarta, dan DIY.</p>
     </div>
 </section>
 

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Pengiriman - Checkout Cetak Foto Jogja')
+@section('robots', 'noindex, nofollow')
 
 @section('content')
 <section class="bg-white">

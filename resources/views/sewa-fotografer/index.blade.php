@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Sewa Fotografer - Cetak Foto Jogja')
+@section('title', 'Sewa Fotografer Jogja & Yogyakarta - Cetak Foto Jogja')
+@section('description', 'Sewa fotografer panggilan di Jogja, Yogyakarta, dan sekitarnya untuk prewedding, ulang tahun, produk, hingga acara keluarga. Booking jadwal online, konfirmasi langsung lewat WhatsApp.')
 
 @section('content')
 <section class="bg-rose-50 border-b border-rose-100">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10">
-        <h1 class="text-2xl sm:text-3xl font-extrabold text-neutral-900">Sewa / Panggilan Fotografer</h1>
-        <p class="mt-2 text-neutral-600 max-w-2xl">Fotografer datang ke lokasi acara kamu. Pilih tanggal & jam sesi, isi detail acara, lalu booking langsung lewat WhatsApp.</p>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-neutral-900">Sewa / Panggilan Fotografer Jogja</h1>
+        <p class="mt-2 text-neutral-600 max-w-2xl">Fotografer datang ke lokasi acara kamu di Jogja, Yogyakarta, dan sekitarnya. Pilih tanggal & jam sesi, isi detail acara, lalu booking langsung lewat WhatsApp.</p>
     </div>
 </section>
 

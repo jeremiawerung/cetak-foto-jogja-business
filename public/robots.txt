@@ -1,2 +1,7 @@
 User-agent: *
-Disallow:
+Disallow: /admin
+Disallow: /internal
+Disallow: /keranjang
+Disallow: /checkout
+
+Sitemap: https://cetakfotojogja.my.id/sitemap.xml
