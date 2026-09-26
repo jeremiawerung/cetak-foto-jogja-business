@@ -138,7 +138,7 @@
 
         <div class="mt-4 rounded-xl overflow-hidden border border-neutral-200">
             <iframe
-                src="https://www.google.com/maps?q={{ urlencode('Jalan Tempel, Gendol, Margorejo, Kec. Tempel, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55552') }}&output=embed"
+                src="https://www.google.com/maps?q=-7.6557828,110.3229673&output=embed"
                 title="Lokasi Cetak Foto Jogja di Google Maps"
                 class="w-full h-72 sm:h-96"
                 style="border:0"

@@ -49,6 +49,11 @@
             ],
             'areaServed' => ['Yogyakarta', 'Jogja', 'Sleman', 'Bantul', 'Kota Yogyakarta', 'Gunungkidul', 'Kulon Progo', 'Daerah Istimewa Yogyakarta'],
             'hasMap' => 'https://maps.app.goo.gl/XV2h6SeEgFWF8is39',
+            'geo' => [
+                '@type' => 'GeoCoordinates',
+                'latitude' => -7.6557828,
+                'longitude' => 110.3229673,
+            ],
             'openingHoursSpecification' => [
                 [
                     '@type' => 'OpeningHoursSpecification',
