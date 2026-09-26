@@ -30,3 +30,17 @@
   AddHandler application/x-httpd-alt-php83___lsphp .php .php8 .phtml
 </IfModule>
 # php -- END cPanel-generated handler, do not edit
+
+# Aset build (resources/js, resources/css) di-fingerprint Vite (nama file
+# berubah tiap ada perubahan konten), jadi aman di-cache lama oleh browser.
+<IfModule mod_expires.c>
+    ExpiresActive On
+    <FilesMatch "\.(js|css|woff2?|ttf)$">
+        ExpiresDefault "access plus 1 year"
+    </FilesMatch>
+</IfModule>
+<IfModule mod_headers.c>
+    <FilesMatch "\.(js|css|woff2?|ttf)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+</IfModule>

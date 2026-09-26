@@ -2,7 +2,7 @@
     <nav class="max-w-6xl mx-auto px-4 sm:px-6">
         <div class="flex items-center justify-between h-16">
             <a href="{{ route('home') }}" class="flex items-center">
-                <img src="{{ asset('images/cetak-foto-jogja-logo.png') }}" alt="Cetak Foto Jogja - Online Photo Print Service" class="h-9 sm:h-10 w-auto">
+                <img src="{{ asset('images/cetak-foto-jogja-logo.png') }}" alt="Cetak Foto Jogja - Online Photo Print Service" width="412" height="140" class="h-9 sm:h-10 w-auto">
             </a>
 
             <div class="hidden sm:flex items-center gap-1">

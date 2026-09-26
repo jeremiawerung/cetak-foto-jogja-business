@@ -87,10 +87,14 @@
 
     <div class="mt-4 columns-2 sm:columns-3 lg:columns-4 gap-3 sm:gap-4 [column-fill:balance]">
         @for ($i = 1; $i <= 8; $i++)
-            @php $fotoPortofolio = "images/portofolio/{$i}.jpg"; $adaFoto = file_exists(public_path($fotoPortofolio)); @endphp
+            @php
+                $fotoPortofolio = "images/portofolio/{$i}.jpg";
+                $adaFoto = file_exists(public_path($fotoPortofolio));
+                $ukuranFoto = $adaFoto ? getimagesize(public_path($fotoPortofolio)) : null;
+            @endphp
             <div class="mb-3 sm:mb-4 break-inside-avoid rounded-xl overflow-hidden bg-neutral-100 border border-neutral-200">
                 @if ($adaFoto)
-                    <img src="{{ asset($fotoPortofolio) }}" alt="Hasil karya Cetak Foto Jogja {{ $i }}" class="w-full h-auto max-h-96 object-cover hover:scale-105 transition duration-300">
+                    <img src="{{ asset($fotoPortofolio) }}" alt="Hasil karya Cetak Foto Jogja {{ $i }}" width="{{ $ukuranFoto[0] }}" height="{{ $ukuranFoto[1] }}" loading="lazy" class="w-full h-auto max-h-96 object-cover hover:scale-105 transition duration-300">
                 @else
                     <div class="aspect-square flex items-center justify-center text-neutral-300">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -135,6 +139,7 @@
         <div class="mt-4 rounded-xl overflow-hidden border border-neutral-200">
             <iframe
                 src="https://www.google.com/maps?q={{ urlencode('Jalan Tempel, Gendol, Margorejo, Kec. Tempel, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55552') }}&output=embed"
+                title="Lokasi Cetak Foto Jogja di Google Maps"
                 class="w-full h-72 sm:h-96"
                 style="border:0"
                 allowfullscreen

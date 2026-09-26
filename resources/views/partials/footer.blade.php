@@ -1,7 +1,7 @@
 <footer class="mt-16 border-t border-neutral-200 bg-white">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 grid gap-8 sm:grid-cols-3">
         <div>
-            <img src="{{ asset('images/cetak-foto-jogja-logo.png') }}" alt="Cetak Foto Jogja - Online Photo Print Service" class="h-8 w-auto">
+            <img src="{{ asset('images/cetak-foto-jogja-logo.png') }}" alt="Cetak Foto Jogja - Online Photo Print Service" width="412" height="140" class="h-8 w-auto">
             <p class="mt-3 text-sm text-neutral-500">Cetak foto & sewa fotografer panggilan di Jogja. Order gampang, tinggal chat WhatsApp.</p>
         </div>
 
