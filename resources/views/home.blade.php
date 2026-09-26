@@ -33,6 +33,14 @@
                     'text' => 'Sebagian besar pesanan cetak foto reguler dan pas foto selesai dalam 1 hari kerja. Untuk produk custom seperti pigura atau mini canvas, admin akan konfirmasi estimasi waktu lewat WhatsApp setelah pesanan masuk.',
                 ],
             ],
+            [
+                '@type' => 'Question',
+                'name' => 'Jam berapa toko Cetak Foto Jogja buka?',
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text' => 'Toko fisik buka setiap hari pukul 07.00 - 22.00 WIB untuk pengambilan pesanan. Kalau mau order cetak foto online, kamu bisa pesan kapan saja 24 jam lewat WhatsApp - nanti diproses saat jam operasional.',
+                ],
+            ],
         ],
     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG) !!}
 </script>
@@ -111,6 +119,10 @@
             <h3 class="font-semibold text-neutral-900">Berapa lama proses cetak foto di Cetak Foto Jogja?</h3>
             <p class="mt-1 text-sm text-neutral-600">Sebagian besar pesanan cetak foto reguler dan pas foto selesai dalam 1 hari kerja. Untuk produk custom seperti pigura atau mini canvas, admin akan konfirmasi estimasi waktu lewat WhatsApp setelah pesanan masuk.</p>
         </div>
+        <div class="rounded-xl border border-neutral-200 bg-white p-4 sm:p-5">
+            <h3 class="font-semibold text-neutral-900">Jam berapa toko Cetak Foto Jogja buka?</h3>
+            <p class="mt-1 text-sm text-neutral-600">Toko fisik buka setiap hari pukul 07.00 - 22.00 WIB untuk pengambilan pesanan. Kalau mau order cetak foto online, kamu bisa pesan kapan saja 24 jam lewat WhatsApp - nanti diproses saat jam operasional.</p>
+        </div>
     </div>
 </section>
 
@@ -118,6 +130,7 @@
     <div class="rounded-2xl border border-neutral-200 bg-white p-5 sm:p-6">
         <h2 class="text-lg font-bold text-neutral-900">Lokasi Kami</h2>
         <p class="mt-1 text-sm text-neutral-500">Jl. Tempel, Gendol, Margorejo, Kec. Tempel, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55552</p>
+        <p class="mt-1 text-sm text-neutral-500">Jam Buka Toko: 07.00 - 22.00 WIB (setiap hari) &middot; Order online lewat WhatsApp bisa 24 jam.</p>
 
         <div class="mt-4 rounded-xl overflow-hidden border border-neutral-200">
             <iframe
