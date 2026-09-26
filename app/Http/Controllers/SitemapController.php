@@ -41,8 +41,37 @@ class SitemapController extends Controller
             }
         }
 
-        return response()
-            ->view('sitemap', ['urls' => $urls])
+        return response($this->toXml($urls), 200)
             ->header('Content-Type', 'application/xml; charset=UTF-8');
+    }
+
+    /**
+     * Dirender lewat string PHP biasa (bukan Blade view) dan deklarasi XML
+     * ditulis terpisah-pisah (concat) - di hosting produksi ini, deklarasi
+     * XML apa adanya di file .php sempat salah dibaca parser PHP sebagai
+     * pembuka tag PHP sungguhan dan bikin 500 (syntax error).
+     *
+     * @param  array<int, array<string, mixed>>  $urls
+     */
+    private function toXml(array $urls): string
+    {
+        $entries = array_map(function (array $url) {
+            $lastmod = ! empty($url['lastmod'])
+                ? sprintf("        <lastmod>%s</lastmod>\n", htmlspecialchars($url['lastmod'], ENT_XML1))
+                : '';
+
+            return sprintf(
+                "    <url>\n        <loc>%s</loc>\n%s        <changefreq>%s</changefreq>\n        <priority>%s</priority>\n    </url>\n",
+                htmlspecialchars($url['loc'], ENT_XML1),
+                $lastmod,
+                htmlspecialchars($url['changefreq'], ENT_XML1),
+                htmlspecialchars($url['priority'], ENT_XML1)
+            );
+        }, $urls);
+
+        return '<'.'?xml version="1.0" encoding="UTF-8"?'.'>'."\n"
+            .'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'."\n"
+            .implode('', $entries)
+            .'</urlset>'."\n";
     }
 }
