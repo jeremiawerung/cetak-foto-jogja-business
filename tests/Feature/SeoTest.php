@@ -19,6 +19,10 @@ class SeoTest extends TestCase
         $response->assertSee('<link rel="canonical"', false);
         $response->assertSee('application/ld+json', false);
         $response->assertSee('FAQPage', false);
+        // "@context" bentrok dengan Blade directive bawaan Laravel (lihat
+        // CompilesContexts) - pastikan tidak ter-parse jadi kode directive.
+        $response->assertSee('"@context":"https://schema.org"', false);
+        $response->assertDontSee('context()->has', false);
     }
 
     public function test_produk_show_page_has_product_schema_and_description(): void
@@ -44,6 +48,7 @@ class SeoTest extends TestCase
         $response->assertOk();
         $response->assertSee('<meta name="description"', false);
         $response->assertSee('"@type":"Product"', false);
+        $response->assertSee('"@context":"https://schema.org"', false);
     }
 
     public function test_cart_page_is_marked_noindex(): void

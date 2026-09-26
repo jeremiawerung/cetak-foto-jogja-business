@@ -32,7 +32,7 @@
 
     <script type="application/ld+json">
         {!! json_encode([
-            '@context' => 'https://schema.org',
+            '@@context' => 'https://schema.org',
             '@type' => 'LocalBusiness',
             'name' => config('services.toko.nama'),
             'image' => asset('images/cetak-foto-jogja-logo-HD.png'),
