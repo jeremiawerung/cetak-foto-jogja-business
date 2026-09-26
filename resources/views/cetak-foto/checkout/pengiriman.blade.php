@@ -78,7 +78,7 @@
                     Kembali
                 </a>
                 <button type="submit" id="btn-lanjut-konfirmasi"
-                        class="flex-1 rounded-lg bg-rose-600 px-4 py-3 font-semibold text-white hover:bg-rose-700 transition">
+                        class="relative z-50 flex-1 rounded-lg bg-rose-600 px-4 py-3 font-semibold text-white hover:bg-rose-700 transition">
                     Lanjut ke Konfirmasi
                 </button>
             </div>

@@ -62,7 +62,7 @@
                 Tambah Produk Lain
             </a>
             <a href="{{ route('checkout.informasi') }}"
-               class="flex-1 text-center rounded-lg bg-rose-600 px-4 py-3 font-semibold text-white hover:bg-rose-700 transition">
+               class="relative z-50 flex-1 text-center rounded-lg bg-rose-600 px-4 py-3 font-semibold text-white hover:bg-rose-700 transition">
                 Lanjut ke Informasi
             </a>
         </div>

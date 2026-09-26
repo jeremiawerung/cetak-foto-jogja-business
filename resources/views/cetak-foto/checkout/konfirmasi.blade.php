@@ -135,7 +135,7 @@
                     </a>
                 @endif
                 <button type="submit"
-                        class="flex-1 inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-500 px-4 py-3 font-semibold text-white hover:bg-emerald-600 transition">
+                        class="relative z-50 flex-1 inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-500 px-4 py-3 font-semibold text-white hover:bg-emerald-600 transition">
                     Order via WhatsApp
                 </button>
             </div>

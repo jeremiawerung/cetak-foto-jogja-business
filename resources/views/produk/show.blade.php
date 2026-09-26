@@ -137,7 +137,7 @@
                     </div>
                 @endif
 
-                <button type="submit" class="w-full rounded-lg bg-rose-600 px-4 py-3 font-semibold text-white hover:bg-rose-700 transition">
+                <button type="submit" class="relative z-50 w-full rounded-lg bg-rose-600 px-4 py-3 font-semibold text-white hover:bg-rose-700 transition">
                     Tambah ke Keranjang
                 </button>
             </form>

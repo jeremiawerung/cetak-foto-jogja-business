@@ -52,7 +52,7 @@
                     Kembali ke Keranjang
                 </a>
                 <button type="submit"
-                        class="flex-1 rounded-lg bg-rose-600 px-4 py-3 font-semibold text-white hover:bg-rose-700 transition">
+                        class="relative z-50 flex-1 rounded-lg bg-rose-600 px-4 py-3 font-semibold text-white hover:bg-rose-700 transition">
                     {{ $isCustom ? 'Lanjut ke Konfirmasi' : 'Lanjut ke Pengiriman' }}
                 </button>
             </div>
